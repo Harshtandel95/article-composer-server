@@ -12,7 +12,7 @@ const PORT = process.env.PORT ;
 const MONGODB_URI = process.env.MONGODB_URI ;
 // Middleware
 app.use(cors({
-  origin: 'https://article-composer-frontend.vercel.app/',  // Allow all origins
+  origin: '*',  // Allow all origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
