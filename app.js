@@ -14,7 +14,13 @@ const MONGODB_URI = process.env.MONGODB_URI ;
 app.use(cors({
   origin: '*',  // Allow all origins
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Methods',
+    'Access-Control-Allow-Headers'
+  ],
   credentials: true
 }));
 app.use(morgan('dev')); // HTTP request logger
