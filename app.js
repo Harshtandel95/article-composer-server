@@ -1,28 +1,29 @@
-// app.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 require('dotenv').config();
 const companyRoutes = require('./routes');
+
 // Initialize express app
 const app = express();
+
 // Environment variables
-const PORT = process.env.PORT ;
-const MONGODB_URI = process.env.MONGODB_URI ;
-// Middleware
-app.use(cors({
-  origin: '*',  // Allow all origins
+const PORT = process.env.PORT;
+const MONGODB_URI = process.env.MONGODB_URI;
+
+// Improved CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: [
-    'Content-Type', 
-    'Authorization', 
-    'Access-Control-Allow-Origin',
-    'Access-Control-Allow-Methods',
-    'Access-Control-Allow-Headers'
-  ],
-  credentials: true
-}));
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Other middleware
 app.use(morgan('dev')); // HTTP request logger
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
